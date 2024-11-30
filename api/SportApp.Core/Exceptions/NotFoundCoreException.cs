@@ -1,4 +1,4 @@
-﻿namespace ProductCatalog.Core.Exceptions
+﻿namespace SportApp.Core.Exceptions
 {
     public class NotFoundCoreException : RestCoreException
     {

@@ -6,7 +6,7 @@ namespace SportApp.Api.Controllers
     [ApiController]
     [TypeFilter<RestExceptionFilter>]
     [Route("api/[controller]")]
-    internal abstract class BaseController : ControllerBase
+    public abstract class BaseController : ControllerBase
     {
     }
 }

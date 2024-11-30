@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
-using ProductCatalog.Core.Exceptions;
+using SportApp.Core.Exceptions;
 
 namespace SportApp.Api.Filters
 {

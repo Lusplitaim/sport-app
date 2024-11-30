@@ -1,4 +1,7 @@
 
+using SportApp.Core.Extensions;
+using SportApp.Infrastructure.Extensions;
+
 namespace SportApp.Api
 {
     public class Program
@@ -14,6 +17,11 @@ namespace SportApp.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+
+            builder.Services.AddCore(builder.Configuration);
+            builder.Services.AddPersistence(builder.Configuration);
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -22,6 +30,11 @@ namespace SportApp.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials());
 
             app.UseAuthorization();
 
