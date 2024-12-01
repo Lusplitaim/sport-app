@@ -1,0 +1,41 @@
+<p-sidebar [(visible)]="filtersVisible">
+    <app-product-filters [categories]="filtersContext.categories" (onFiltersChange)="applyFilters($event)"></app-product-filters>
+</p-sidebar>
+
+<p-table
+    [value]="products"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    selectionMode="single"
+    dataKey="id"
+    [(selection)]="selectedProduct"
+    (onRowSelect)="onRowSelect($event)">
+    <ng-template pTemplate="caption">
+        <div class="flex flex-row items-center justify-between">
+            <div>
+                Продукты
+            </div>
+            <div class="flex gap-4">
+                <button pButton icon="pi pi-filter" [rounded]="true" [text]="true" severity="info" (click)="filtersVisible = true"></button>
+                @if (canCreate) {
+                    <button pButton (click)="openCreationModal()"><i class="pi pi-plus"></i></button>
+                }
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Код</th>
+            <th>Наименование</th>
+            <th>Категория</th>
+            <th>Стоимость</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr [pSelectableRow]="product">
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category.name }}</td>
+            <td>{{ product.price }}</td>
+        </tr>
+    </ng-template>
+</p-table>
